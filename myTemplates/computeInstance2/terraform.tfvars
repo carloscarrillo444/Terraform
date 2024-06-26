@@ -1,0 +1,16 @@
+tenancy_ocid           = "your_tenancy_ocid"                ## ocid1.tenancy.oc1..aaaaaaaaurkmkuzaqqpvazu6zgb56gpmfz3w7gpuhjxebmleczdkoffuqs3a
+user_ocid              = "your_user_ocid"                   ## ocid1.user.oc1..aaaaaaaav5l64un2buwow3x4sql7drrih5tkaoyufnv2w523gyl4d7vcc6oa
+fingerprint            = "your_api_key_fingerprint"         ## e6:1a:00:af:97:1f:d7:4a:98:3c:ad:3d:46:11:5b:33
+private_key_path       = "path/to/your/oci_api_key.pem"     ## C:\Users\cacarrillo\Documents\SICE\myKeys\ccarrillo@sice.com.au_2024-06-26T06_36_59.852Z.pem
+region                 = "your_region"                      ## ap-melbourne-1
+compartment_id         = "your_compartment_ocid"            ## ccarrillo ocid1.compartment.oc1..aaaaaaaac4xh3wrdnbfqlblirhqpufoo6y6r3vnhvasfdutwl6pqu5ijgtrq
+availability_domain    = "your_availability_domain"         ## AP-MELBOURNE-1-AD-1
+vcn_cidr               = "10.0.0.0/16"
+subnet_cidr            = "10.0.1.0/24"
+instance_shape         = "VM.Standard.E4.Flex"
+instance_ocpus         = 2
+instance_memory_in_gbs = 16
+instance_private_ip    = "10.0.1.10"
+image_id               = "your_image_ocid"                  ## | Oracle-Linux-8.9-aarch64-2024.05.29-0  | ocid1.image.oc1.ap-melbourne-1.aaaaaaaa3dkuh2ofm2kwzncgkq2ig6y4munbvf7ypd3yb7ctjkggvtsowpoq | Oracle Linux | 8         |
+ssh_public_key_path    = "~/.ssh/id_rsa.pub"                ## C:\Users\cacarrillo\.ssh\id_rsa.pub
+block_volume_size_in_gbs = 50

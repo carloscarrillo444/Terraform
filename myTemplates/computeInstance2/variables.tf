@@ -1,0 +1,16 @@
+variable "tenancy_ocid" {}
+variable "user_ocid" {}
+variable "fingerprint" {}
+variable "private_key_path" {}
+variable "region" {}
+variable "compartment_id" {}
+variable "availability_domain" {}
+variable "vcn_cidr" {}
+variable "subnet_cidr" {}
+variable "instance_shape" {}
+variable "instance_ocpus" {}
+variable "instance_memory_in_gbs" {}
+variable "instance_private_ip" {}
+variable "image_id" {}
+variable "ssh_public_key_path" {}
+variable "block_volume_size_in_gbs" {}
