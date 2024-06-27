@@ -210,6 +210,7 @@ resource "oci_dns_zone" "dnsz-au-com-sice-nzaukwktbos-cdschmidt-spoke01" {
 }
 ### Records
 #### spoke01.cdschmidt.nzaukwktbos.sice.com.au
+/*
 resource oci_dns_rrset dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spoke01-test_A {
   compartment_id = var.compartment_ocid
   domain = "test.spoke01.cdschmidt.nzaukwktbos.sice.com.au"
@@ -222,4 +223,24 @@ resource oci_dns_rrset dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spoke01-test_A
   rtype = "A"
   scope = "PRIVATE"
   zone_name_or_id = oci_dns_zone.dnsz-au-com-sice-nzaukwktbos-cdschmidt-spoke01.id
+}
+*/
+// ccarrillo - 20240627 - Adjustment using Iterative variable "dns_rrsets" for cration oci_dns_rrset
+resource oci_dns_rrset dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spoke01-test_A {
+    for_each = {
+    for k, v in var.dns_rrsets : k => v
+    if v.rrset == "dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spoke01-test_A"
+    }
+
+    compartment_id = var.compartment_ocid
+    domain = each.value.domain
+    items {
+        domain = each.value.domain
+        rdata  = each.value.rdata
+        rtype  = each.value.rtype
+        ttl    = each.value.ttl
+    }
+    rtype = each.value.rtype
+    scope = each.value.scope
+    zone_name_or_id = oci_dns_zone.dnsz-au-com-sice-nzaukwktbos-cdschmidt-spoke01.id
 }

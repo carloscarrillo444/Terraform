@@ -183,3 +183,20 @@ variable "spoke03_db_priv_dns_label" {
 variable "spoke03_db_priv_display_name" {
   default = "sn-mel-siceanz-tolling-sandbox-cdschmidt-spoke03-db-priv"
 }
+
+// ccarrillo - 20240627 - Iterative variable "dns_rrsets" for resources spoke01|spoke02|spoke03/oci_dns_rrset dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spokeXX-test_A 
+variable "dns_rrsets" {
+  type = map(object({
+    rrset   = string
+    domain  = string
+    rdata   = string
+    rtype   = string
+    ttl     = string
+    scope   = string
+  }))
+  default = {
+    dns_rrset01 = { rrset = "dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spoke03-test_A", domain = "test.spoke03.cdschmidt.nzaukwktbos.sice.com.au", rdata = "9.10.11.12" , rtype = "A", ttl = "3600", scope = "PRIVATE" },
+    dns_rrset02 = { rrset = "dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spoke02-test_A", domain = "test.spoke02.cdschmidt.nzaukwktbos.sice.com.au", rdata = "5.6.7.8" , rtype = "A", ttl = "3600", scope = "PRIVATE" },
+    dns_rrset03 = { rrset = "dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spoke01-test_A", domain = "test.spoke01.cdschmidt.nzaukwktbos.sice.com.au", rdata = "1.2.3.4" , rtype = "A", ttl = "3600", scope = "PRIVATE" }
+  }
+}
