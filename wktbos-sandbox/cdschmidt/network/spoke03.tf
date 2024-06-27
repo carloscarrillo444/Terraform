@@ -119,7 +119,6 @@ resource oci_dns_rrset dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spoke03-test_A
   zone_name_or_id = oci_dns_zone.dnsz-au-com-sice-nzaukwktbos-cdschmidt-spoke03.id
 }
 */
-
 // ccarrillo - 20240627 - Adjustment using Iterative variable "dns_rrsets" for cration oci_dns_rrset
 resource oci_dns_rrset dnsrrset-au-com-sice-nzaukwktbos-cdschmidt-spoke03-test_A {
 
