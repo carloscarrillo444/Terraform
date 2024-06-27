@@ -1,0 +1,68 @@
+# Added by Edwin Jardin - Terraform script for Installation and configuration of Oracle Enterprise Manager (OEM 13c) in OCI.
+# Create the compute instance for OEM
+
+
+resource "oci_core_instance" "oem_instance" {
+  compartment_id = var.compartment_ocid
+  availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[0].name
+  shape = "VM.Standard2.1"
+
+  create_vnic_details {
+    subnet_id = oci_core_subnet.main_subnet.id
+    assign_public_ip = true
+  }
+
+  metadata = {
+    ssh_authorized_keys = file(var.ssh_public_key)
+    user_data = base64encode(file("scripts/install_oem.sh"))
+  }
+
+  source_details {
+    source_type = "image"
+    source_id = data.oci_core_images.OracleLinux.image_id
+  }
+
+  display_name = "oem-instance"
+}
+
+
+# Create filename scripts/install_oem.sh
+
+#!/bin/bash
+# Update and install necessary packages
+sudo yum update -y
+sudo yum install -y oracle-database-preinstall-19c
+
+# Download Oracle Enterprise Manager 13c (assuming you have the necessary credentials and URL)
+# wget -O /tmp/em13c.zip "URL_TO_OEM_13C_ZIP"
+
+# Unzip and Install OEM 13c
+# cd /tmp
+# unzip em13c.zip
+# ./em_install.sh
+
+# Provide necessary response files and configurations for the installer
+
+# Start the Oracle Enterprise Manager
+# emctl start oms
+
+
+# data-sources.tf
+
+data "oci_identity_availability_domains" "ADs" {
+  compartment_id = var.tenancy_ocid
+}
+
+data "oci_core_images" "OracleLinux" {
+  compartment_id = var.compartment_ocid
+  operating_system = "Oracle Linux"
+  operating_system_version = "7.9"
+  shape = "VM.Standard2.1"
+}
+
+
+# outputs.tf
+
+output "instance_public_ip" {
+  value = oci_core_instance.oem_instance.public_ip
+}

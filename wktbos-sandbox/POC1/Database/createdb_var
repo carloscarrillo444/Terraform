@@ -1,0 +1,14 @@
+resource "oci_database_autonomous_database" "WKTBOSDev" {            
+  compartment_id                 = var.db_compartment_id
+  cpu_core_count                 = var.db_cpu_core_count
+  data_storage_size_in_tbs       = var.db.data_storage_size_in_tbs
+  display_name                   =  var.db_display_name
+  db_name                        = var.db_name
+  admin_password                 = "ourStrongPassword" // Update with our admin password
+  license_model                  = "BRING_YOUR_OWN_LICENSE"    // BYOL 
+
+  # Optional Parameters
+  freeform_tags = {
+    environment = "Development DB" // To change with proper environment name
+  }
+}
